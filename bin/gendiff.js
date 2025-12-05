@@ -1,7 +1,6 @@
 #!/usr/bin/env node
-/* eslint-disable no-console */
+
 import { Command } from "commander";
-import genDiff from "../src/genDiff.js";
 
 const program = new Command();
 
@@ -9,11 +8,13 @@ program
   .name("gendiff")
   .description("Compares two configuration files and shows a difference.")
   .version("1.0.0")
-  .argument("<filepath1>", "first file to compare")
-  .argument("<filepath2>", "second file to compare")
   .option("-f, --format <type>", "output format", "stylish")
+  .argument("<filepath1>")
+  .argument("<filepath2>")
   .action((filepath1, filepath2, options) => {
-    const diff = genDiff(filepath1, filepath2, options.format);
-    console.log(diff);
-  })
-  .parse();
+    console.log(`File 1: ${filepath1}`);
+    console.log(`File 2: ${filepath2}`);
+    console.log(`Format: ${options.format}`);
+  });
+
+program.parse(process.argv);
