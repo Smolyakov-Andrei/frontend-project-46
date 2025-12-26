@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
 import { readFileSync } from 'node:fs';
+import { parse } from '../src/parsers.js';
 
 const program = new Command();
 
@@ -8,7 +9,7 @@ const program = new Command();
 const readAndParseFile = (filepath) => {
   try {
     const content = readFileSync(filepath, 'utf-8').trim();
-    return JSON.parse(content);
+    return parse(filepath, content);
   } catch (error) {
     console.error(`Error reading or parsing ${filepath}:`, error.message);
     process.exit(1);
@@ -29,14 +30,14 @@ const genDiff = (filepath1, filepath2) => {
     const hasKey2 = key in data2;
 
     if (hasKey1 && hasKey2 && data1[key] === data2[key]) {
-      resultLines.push(`    ${key}: ${data1[key]}`);
+      resultLines.push(`  ${key}: ${data1[key]}`);
     } else if (hasKey1 && hasKey2 && data1[key] !== data2[key]) {
-      resultLines.push(`  - ${key}: ${data1[key]}`);
-      resultLines.push(`  + ${key}: ${data2[key]}`);
+      resultLines.push(`- ${key}: ${data1[key]}`);
+      resultLines.push(`+ ${key}: ${data2[key]}`);
     } else if (hasKey1 && !hasKey2) {
-      resultLines.push(`  - ${key}: ${data1[key]}`);
+      resultLines.push(`- ${key}: ${data1[key]}`);
     } else {
-      resultLines.push(`  + ${key}: ${data2[key]}`);
+      resultLines.push(`+ ${key}: ${data2[key]}`);
     }
   });
 

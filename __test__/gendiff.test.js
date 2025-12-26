@@ -20,16 +20,7 @@ describe('Flat JSON comparison', () => {
     const expected = readFixture('expected_flat.txt').trim();
 
     const { stdout } = await execAsync(`node ${cliPath} ${file1} ${file2}`);
-
-    const normalize = (str) => str
-      .trim()
-      .replace(/\r\n/g, '\n')
-      .replace(/\s+/g, ' ')
-      .replace(/\s*\{\s*/g, '{')
-      .replace(/\s*\}\s*/g, '}')
-      .replace(/\s*,\s*/g, ',');
-
-    expect(normalize(stdout)).toBe(normalize(expected));
+    expect(stdout.trim()).toBe(expected);
   });
 
   it('should return empty diff for identical files', async () => {
@@ -38,7 +29,41 @@ describe('Flat JSON comparison', () => {
 
     const { stdout } = await execAsync(`node ${cliPath} ${file1} ${file2}`);
     expect(stdout.trim()).toBe(
-      '{\n    follow: false\n    host: hexlet.io\n    proxy: 123.234.53.22\n    timeout: 50\n}',
+      '{\n  follow: false\n  host: hexlet.io\n  proxy: 123.234.53.22\n  timeout: 50\n}',
     );
+  });
+
+  describe('YAML files', () => {
+    it('should compare two different YAML files', async () => {
+      const file1 = getFixturePath('file1.yaml');
+      const file2 = getFixturePath('file2.yaml');
+      const expected = readFixture('expected_flat.txt').trim();
+
+      const { stdout } = await execAsync(`node ${cliPath} ${file1} ${file2}`);
+      expect(stdout.trim()).toBe(expected);
+    });
+
+    it('should compare YAML and JSON files', async () => {
+      const file1 = getFixturePath('file1.yaml');
+      const file2 = getFixturePath('file2.json');
+      const expected = readFixture('expected_flat.txt').trim();
+
+      const { stdout } = await execAsync(`node ${cliPath} ${file1} ${file2}`);
+      expect(stdout.trim()).toBe(expected);
+    });
+    it('should compare two different JSON files', async () => {
+      const file1 = getFixturePath('file1.json');
+      const file2 = getFixturePath('file2.json');
+      const expected = readFixture('expected_flat.txt').trim();
+
+      const { stdout } = await execAsync(`node ${cliPath} ${file1} ${file2}`);
+      const received = stdout.trim();
+
+      console.log('EXPECTED (JSON):', JSON.stringify(expected));
+      console.log('RECEIVED (JSON):', JSON.stringify(received));
+      console.log('Are equal?', expected === received);
+
+      expect(received).toBe(expected);
+    });
   });
 });
