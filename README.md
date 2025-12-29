@@ -21,13 +21,16 @@ npm install -g @hexlet/code
 
 Local installation from repository
 
+```bash
 git clone https://github.com/Smolyakov-Andrei/frontend-project-46.git
 cd frontend-project-46
 make install
 npm link
+```
 
 Usage
 
+```bash
 gendiff [options] <filepath1> <filepath2>
 
 Options:
@@ -36,6 +39,7 @@ Options:
 -f, --format <type> - output format: stylish, plain, or json (default: "stylish")
 
 -h, --help - display help for command
+```
 
 📋 Supported Formats
 Input Formats:
@@ -56,6 +60,7 @@ gendiff **fixtures**/file1.json **fixtures**/file2.json
 
 Output:
 
+```bash
 {
 common: { + follow: false
 setting1: Value 1 - setting2: 200 - setting3: true + setting3: null + setting4: blah blah + setting5: {
@@ -144,9 +149,11 @@ Output:
 ]
 }
 ]
+```
 
 🛠️ Development
 
+```bash
 make install
 
 Run tests
@@ -156,9 +163,11 @@ make test
 Run linter
 
 make lint
+```
 
 🏗️ Project Structure
 
+```bash
 frontend-project-46/
 ├── src/
 │ ├── formatters/
@@ -174,6 +183,7 @@ frontend-project-46/
 ├── **fixtures**/ # Тестовые файлы
 ├── bin/ # CLI интерфейс
 └── Makefile # Утилиты сборки
+```
 
 📚 Requirements
 Node.js 14+
