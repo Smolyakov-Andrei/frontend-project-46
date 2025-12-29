@@ -20,14 +20,16 @@ npm install -g @hexlet/code
 ```
 
 Local installation from repository
-bash
+
 git clone https://github.com/Smolyakov-Andrei/frontend-project-46.git
 cd frontend-project-46
 make install
 npm link
-🚀 Usage
-bash
+
+Usage
+
 gendiff [options] <filepath1> <filepath2>
+
 Options:
 -V, --version - output the version number
 
@@ -48,13 +50,12 @@ Plain - Human-readable text descriptions
 
 JSON - Structured JSON for programmatic use
 
-📝 Examples
 Comparing JSON files with stylish format (default)
-bash
+
 gendiff **fixtures**/file1.json **fixtures**/file2.json
+
 Output:
 
-text
 {
 common: { + follow: false
 setting1: Value 1 - setting2: 200 - setting3: true + setting3: null + setting4: blah blah + setting5: {
@@ -88,12 +89,13 @@ key: value
   fee: 100500
   }
   }
-  Comparing YAML files with plain format
-  bash
-  gendiff --format plain **fixtures**/file1.yaml **fixtures**/file2.yaml
-  Output:
 
-text
+Comparing YAML files with plain format
+
+gendiff --format plain **fixtures**/file1.yaml **fixtures**/file2.yaml
+
+Output:
+
 Property 'common.follow' was added with value: false
 Property 'common.setting2' was removed
 Property 'common.setting3' was updated. From true to null
@@ -105,12 +107,13 @@ Property 'group1.baz' was updated. From 'bas' to 'bars'
 Property 'group1.nest' was updated. From [complex value] to 'str'
 Property 'group2' was removed
 Property 'group3' was added with value: [complex value]
+
 Comparing mixed files with JSON format
-bash
+
 gendiff --format json **fixtures**/file1.json **fixtures**/file2.yaml
+
 Output:
 
-json
 [
 {
 "type": "nested",
@@ -141,18 +144,21 @@ json
 ]
 }
 ]
+
 🛠️ Development
-Setup
-bash
+
 make install
+
 Run tests
-bash
+
 make test
+
 Run linter
-bash
+
 make lint
+
 🏗️ Project Structure
-text
+
 frontend-project-46/
 ├── src/
 │ ├── formatters/
@@ -168,6 +174,7 @@ frontend-project-46/
 ├── **fixtures**/ # Тестовые файлы
 ├── bin/ # CLI интерфейс
 └── Makefile # Утилиты сборки
+
 📚 Requirements
 Node.js 14+
 
@@ -175,3 +182,4 @@ npm 6+
 
 📄 License
 ISC
+EOF
