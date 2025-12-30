@@ -30,16 +30,7 @@ npm link
 
 Usage
 
-```bash
-gendiff [options] <filepath1> <filepath2>
-
-Options:
--V, --version - output the version number
-
--f, --format <type> - output format: stylish, plain, or json (default: "stylish")
-
--h, --help - display help for command
-```
+![alt text](image-1.png)
 
 📋 Supported Formats
 Input Formats:
@@ -56,62 +47,11 @@ JSON - Structured JSON for programmatic use
 
 Comparing JSON files with stylish format (default)
 
-gendiff **fixtures**/file1.json **fixtures**/file2.json
-
-Output:
-
-```bash
-{
-common: { + follow: false
-setting1: Value 1 - setting2: 200 - setting3: true + setting3: null + setting4: blah blah + setting5: {
-key5: value5
-}
-setting6: {
-doge: { - wow: + wow: so much
-}
-key: value + ops: vops
-}
-}
-group1: { - baz: bas + baz: bars
-foo: bar - nest: {
-key: value
-} + nest: str
-}
-
-- group2: {
-  abc: 12345
-  deep: {
-  id: 45
-  }
-  }
-
-* group3: {
-  deep: {
-  id: {
-  number: 45
-  }
-  }
-  fee: 100500
-  }
-  }
+![alt text](image-2.png)
 
 Comparing YAML files with plain format
 
-gendiff --format plain **fixtures**/file1.yaml **fixtures**/file2.yaml
-
-Output:
-
-Property 'common.follow' was added with value: false
-Property 'common.setting2' was removed
-Property 'common.setting3' was updated. From true to null
-Property 'common.setting4' was added with value: 'blah blah'
-Property 'common.setting5' was added with value: [complex value]
-Property 'common.setting6.doge.wow' was updated. From '' to 'so much'
-Property 'common.setting6.ops' was added with value: 'vops'
-Property 'group1.baz' was updated. From 'bas' to 'bars'
-Property 'group1.nest' was updated. From [complex value] to 'str'
-Property 'group2' was removed
-Property 'group3' was added with value: [complex value]
+![alt text](image-3.png)
 
 Comparing mixed files with JSON format
 
@@ -149,7 +89,8 @@ Output:
 ]
 }
 ]
-```
+
+````
 
 🛠️ Development
 
@@ -163,7 +104,7 @@ make test
 Run linter
 
 make lint
-```
+````
 
 🏗️ Project Structure
 
@@ -186,10 +127,11 @@ frontend-project-46/
 ```
 
 📚 Requirements
-Node.js 14+
 
+Node.js 14+
 npm 6+
 
 📄 License
+
 ISC
 EOF
