@@ -30,7 +30,7 @@ npm link
 
 Usage
 
-![alt text](image-1.png)
+![alt text](image.png)
 
 📋 Supported Formats
 Input Formats:
@@ -47,11 +47,11 @@ JSON - Structured JSON for programmatic use
 
 Comparing JSON files with stylish format (default)
 
-![alt text](image-2.png)
+![alt text](image-1.png)
 
 Comparing YAML files with plain format
 
-![alt text](image-3.png)
+![alt text](image-2.png)
 
 🛠️ Development
 
