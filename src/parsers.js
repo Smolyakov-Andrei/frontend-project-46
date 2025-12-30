@@ -2,9 +2,9 @@
 import { extname } from 'node:path'
 import yaml from 'yaml'
 
-export const getFileExtension = filepath => extname(filepath).toLowerCase()
+export const getFileExtension = (filepath) => extname(filepath).toLowerCase()
 
-const parseJSON = content => {
+const parseJSON = (content) => {
   try {
     return JSON.parse(content)
   } catch (error) {
@@ -12,7 +12,7 @@ const parseJSON = content => {
   }
 }
 
-const parseYAML = content => {
+const parseYAML = (content) => {
   try {
     return yaml.parse(content)
   } catch (error) {
