@@ -53,45 +53,6 @@ Comparing YAML files with plain format
 
 ![alt text](image-3.png)
 
-Comparing mixed files with JSON format
-
-gendiff --format json **fixtures**/file1.json **fixtures**/file2.yaml
-
-Output:
-
-[
-{
-"type": "nested",
-"key": "common",
-"children": [
-{
-"type": "added",
-"key": "follow",
-"value": false
-},
-{
-"type": "unchanged",
-"key": "setting1",
-"value": "Value 1"
-},
-{
-"type": "removed",
-"key": "setting2",
-"value": 200
-},
-{
-"type": "changed",
-"key": "setting3",
-"oldValue": true,
-"newValue": null
-}
-// ... остальная структура diff
-]
-}
-]
-
-````
-
 🛠️ Development
 
 ```bash
@@ -104,7 +65,7 @@ make test
 Run linter
 
 make lint
-````
+```
 
 🏗️ Project Structure
 
