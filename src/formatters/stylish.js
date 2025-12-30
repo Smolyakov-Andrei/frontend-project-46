@@ -1,4 +1,4 @@
-const stylish = (diff) => {
+const stylish = diff => {
   const buildIndent = (depth, offset = 0) => ' '.repeat(depth * 4 + offset)
 
   const stringify = (value, depth) => {
@@ -20,7 +20,7 @@ const stylish = (diff) => {
   const format = (nodes, depth) => {
     const indent = buildIndent(depth - 1, 2)
 
-    const lines = nodes.map((node) => {
+    const lines = nodes.map(node => {
       const { type, key } = node
 
       switch (type) {
