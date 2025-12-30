@@ -30,7 +30,16 @@ npm link
 
 Usage
 
-![alt text](image.png)
+```bash
+gendiff [options] <filepath1> <filepath2>
+
+Options:
+-V, --version - output the version number
+
+-f, --format <type> - output format: stylish, plain, or json (default: "stylish")
+
+-h, --help - display help for command
+```
 
 📋 Supported Formats
 Input Formats:
@@ -47,11 +56,101 @@ JSON - Structured JSON for programmatic use
 
 Comparing JSON files with stylish format (default)
 
-![alt text](image-1.png)
+```bash
+gendiff **fixtures**/file1.json **fixtures**/file2.json
+
+Output:
+
+
+{
+common: { + follow: false
+setting1: Value 1 - setting2: 200 - setting3: true + setting3: null + setting4: blah blah + setting5: {
+key5: value5
+}
+setting6: {
+doge: { - wow: + wow: so much
+}
+key: value + ops: vops
+}
+}
+group1: { - baz: bas + baz: bars
+foo: bar - nest: {
+key: value
+} + nest: str
+}
+
+- group2: {
+  abc: 12345
+  deep: {
+  id: 45
+  }
+  }
+
+* group3: {
+  deep: {
+  id: {
+  number: 45
+  }
+  }
+  fee: 100500
+  }
+  }
 
 Comparing YAML files with plain format
 
-![alt text](image-2.png)
+gendiff --format plain **fixtures**/file1.yaml **fixtures**/file2.yaml
+
+Output:
+
+Property 'common.follow' was added with value: false
+Property 'common.setting2' was removed
+Property 'common.setting3' was updated. From true to null
+Property 'common.setting4' was added with value: 'blah blah'
+Property 'common.setting5' was added with value: [complex value]
+Property 'common.setting6.doge.wow' was updated. From '' to 'so much'
+Property 'common.setting6.ops' was added with value: 'vops'
+Property 'group1.baz' was updated. From 'bas' to 'bars'
+Property 'group1.nest' was updated. From [complex value] to 'str'
+Property 'group2' was removed
+Property 'group3' was added with value: [complex value]
+
+Comparing mixed files with JSON format
+
+gendiff --format json **fixtures**/file1.json **fixtures**/file2.yaml
+
+Output:
+
+[
+{
+"type": "nested",
+"key": "common",
+"children": [
+{
+"type": "added",
+"key": "follow",
+"value": false
+},
+{
+"type": "unchanged",
+"key": "setting1",
+"value": "Value 1"
+},
+{
+"type": "removed",
+"key": "setting2",
+"value": 200
+},
+{
+"type": "changed",
+"key": "setting3",
+"oldValue": true,
+"newValue": null
+}
+
+]
+}
+]
+```
 
 🛠️ Development
 
@@ -88,11 +187,10 @@ frontend-project-46/
 ```
 
 📚 Requirements
-
 Node.js 14+
+
 npm 6+
 
 📄 License
-
 ISC
 EOF
