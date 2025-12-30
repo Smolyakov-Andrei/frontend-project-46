@@ -10,7 +10,7 @@
   },
   "rules": {
     "semi": ["error", "never"],
-    "arrow-parens": ["error", "always"],
+    "arrow-parens": ["error", "as-needed"],
     "brace-style": ["error", "1tbs"],
     "no-multiple-empty-lines": ["error", { "max": 0 }],
     "no-console": "off",
