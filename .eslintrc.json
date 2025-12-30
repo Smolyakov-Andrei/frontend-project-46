@@ -9,13 +9,17 @@
     "sourceType": "module"
   },
   "rules": {
-    "semi": ["error", "always"],
-    "arrow-parens": ["error", "always"],
+    "semi": ["error", "never"],
+    "arrow-parens": ["error", "as-needed"],
     "import/extensions": ["error", "always"],
     "no-console": "off",
     "linebreak-style": "off",
     "no-underscore-dangle": ["error", { 
       "allow": ["__filename", "__dirname"] 
-    }]
+    }],
+    "brace-style": ["error", "1tbs"],
+    "object-curly-newline": "off",
+    "operator-linebreak": "off",
+    "implicit-arrow-linebreak": "off"
   }
 }

@@ -1,6 +1,6 @@
-const isObject = (value) => typeof value === 'object' && value !== null && !Array.isArray(value)
+const isObject = value => typeof value === 'object' && value !== null && !Array.isArray(value)
 
-const formatValue = (value) => {
+const formatValue = value => {
   if (isObject(value)) {
     return '[complex value]'
   }
@@ -13,7 +13,7 @@ const formatValue = (value) => {
 const buildPlainLines = (diff, path = '') => {
   const lines = []
 
-  diff.forEach((node) => {
+  diff.forEach(node => {
     const currentPath = path ? `${path}.${node.key}` : node.key
 
     switch (node.type) {
@@ -52,6 +52,6 @@ const buildPlainLines = (diff, path = '') => {
   return lines
 }
 
-const format = (diff) => buildPlainLines(diff).join('\n')
+const format = diff => buildPlainLines(diff).join('\n')
 
 export default format
