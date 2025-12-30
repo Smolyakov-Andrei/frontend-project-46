@@ -56,11 +56,12 @@ JSON - Structured JSON for programmatic use
 
 Comparing JSON files with stylish format (default)
 
+```bash
 gendiff **fixtures**/file1.json **fixtures**/file2.json
 
 Output:
 
-```bash
+
 {
 common: { + follow: false
 setting1: Value 1 - setting2: 200 - setting3: true + setting3: null + setting4: blah blah + setting5: {
@@ -145,7 +146,7 @@ Output:
 "oldValue": true,
 "newValue": null
 }
-// ... остальная структура diff
+
 ]
 }
 ]
