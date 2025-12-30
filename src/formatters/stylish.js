@@ -1,8 +1,8 @@
 const stylish = (diff) => {
-  const buildIndent = (depth, offset = 0) => ' '.repeat(depth * 4 + offset);
+  const buildIndent = (depth, offset = 0) => " ".repeat(depth * 4 + offset);
 
   const stringify = (value, depth) => {
-    if (typeof value !== 'object' || value === null) {
+    if (typeof value !== "object" || value === null) {
       return String(value);
     }
 
@@ -11,10 +11,10 @@ const stylish = (diff) => {
 
     const entries = Object.entries(value);
     const lines = entries.map(
-      ([key, val]) => `${innerIndent}${key}: ${stringify(val, depth + 1)}`,
+      ([key, val]) => `${innerIndent}${key}: ${stringify(val, depth + 1)}`
     );
 
-    return `{\n${lines.join('\n')}\n${indent}}`;
+    return `{\n${lines.join("\n")}\n${indent}}`;
   };
 
   const format = (nodes, depth) => {
@@ -24,28 +24,28 @@ const stylish = (diff) => {
       const { type, key } = node;
 
       switch (type) {
-        case 'nested':
+        case "nested":
           return `${indent}  ${key}: {\n${format(
             node.children,
-            depth + 1,
+            depth + 1
           )}\n${indent}  }`;
-        case 'added':
+        case "added":
           return `${indent}+ ${key}: ${stringify(node.value, depth)}`;
-        case 'removed':
+        case "removed":
           return `${indent}- ${key}: ${stringify(node.value, depth)}`;
-        case 'changed':
+        case "changed":
           return [
             `${indent}- ${key}: ${stringify(node.oldValue, depth)}`,
             `${indent}+ ${key}: ${stringify(node.newValue, depth)}`,
-          ].join('\n');
-        case 'unchanged':
+          ].join("\n");
+        case "unchanged":
           return `${indent}  ${key}: ${stringify(node.value, depth)}`;
         default:
           throw new Error(`Unknown type: ${type}`);
       }
     });
 
-    return lines.join('\n');
+    return lines.join("\n");
   };
 
   return `{\n${format(diff, 1)}\n}`;

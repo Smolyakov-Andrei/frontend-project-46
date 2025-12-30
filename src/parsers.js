@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { extname } from 'node:path';
-import yaml from 'yaml';
+import { extname } from "node:path";
+import yaml from "yaml";
 
 export const getFileExtension = (filepath) => extname(filepath).toLowerCase();
 
@@ -24,10 +24,10 @@ export const parse = (filepath, content) => {
   const extension = getFileExtension(filepath);
 
   switch (extension) {
-    case '.json':
+    case ".json":
       return parseJSON(content);
-    case '.yaml':
-    case '.yml':
+    case ".yaml":
+    case ".yml":
       return parseYAML(content);
     default:
       throw new Error(`Unsupported file format: ${extension}`);
